@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plan your wedding in one place: book venues, photographers, food menus, makeup artists and wedding cakes.">
+  <title data-i18n="Forever Day — Wedding Planning">Forever Day — Wedding Planning</title>
+  <script>
+    try {
+      var theme = localStorage.getItem("fd-theme");
+      if (theme !== "light" && theme !== "dark") theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+      var lang = localStorage.getItem("fd-lang") || (navigator.language || "en").slice(0, 2);
+      if (/^(en|ar|fr|it|de)$/.test(lang)) document.documentElement.setAttribute("lang", lang);
+      if (lang === "ar") document.documentElement.setAttribute("dir", "rtl");
+    } catch (error) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="home">
+  <header id="site-header"></header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active" style="background-image:url(images/hero/couple.jpg)"></div>
+        <div class="hero-slide" style="background-image:url(images/halls/garden.jpg)"></div>
+        <div class="hero-slide" style="background-image:url(images/hero/bouquet.jpg)"></div>
+        <div class="hero-slide" style="background-image:url(images/hero/rings.jpg)"></div>
+      </div>
+      <div class="hero-content container">
+        <p class="script" data-i18n>Welcome to your wedding</p>
+        <h1 data-i18n-html>Plan your whole day<br>in one place</h1>
+        <p class="hero-text" data-i18n>Choose your venue, photographer, food, makeup artist and cake — see who's free on your date and book them together.</p>
+
+        <form class="date-check" id="date-check">
+          <label>
+            <span data-i18n>Wedding day</span>
+            <input type="date" id="check-date" required>
+          </label>
+          <label>
+            <span data-i18n>Looking for</span>
+            <select id="check-cat"></select>
+          </label>
+          <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> <span data-i18n>See who's free</span></button>
+        </form>
+      </div>
+      <div class="hero-dots" id="hero-dots"></div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n>Our services</p>
+          <h2 data-i18n>Everything for the big day</h2>
+          <p class="muted" data-i18n>Hand-picked vendors with real prices and live availability.</p>
+        </div>
+        <div class="cat-grid" id="cat-grid"></div>
+      </div>
+    </section>
+
+    <!-- Countdown / set your date -->
+    <section class="countdown-band" id="countdown-band">
+      <div class="container countdown-inner reveal" id="countdown"></div>
+    </section>
+
+    <!-- Most loved -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n>Most loved</p>
+          <h2 data-i18n>Top rated by our brides</h2>
+        </div>
+        <div class="tabs" id="featured-tabs" role="tablist"></div>
+        <div class="vendor-grid" id="featured"></div>
+        <div class="center"><a class="btn btn-ghost" id="featured-more" href="services.html"></a></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n>Simple & calm</p>
+          <h2 data-i18n>How it works</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><span class="step-num">1</span><i class="fas fa-calendar-alt"></i><h3 data-i18n>Pick your date</h3><p class="muted" data-i18n>Tell us your wedding day and we show who is free.</p></div>
+          <div class="step reveal"><span class="step-num">2</span><i class="fas fa-heart"></i><h3 data-i18n>Choose your vendors</h3><p class="muted" data-i18n>Compare photos, menus, packages and prices.</p></div>
+          <div class="step reveal"><span class="step-num">3</span><i class="fas fa-clipboard-list"></i><h3 data-i18n>Build your plan</h3><p class="muted" data-i18n>Everything goes into one plan with the total and your budget.</p></div>
+          <div class="step reveal"><span class="step-num">4</span><i class="fab fa-whatsapp"></i><h3 data-i18n>Send & relax</h3><p class="muted" data-i18n>Send it on WhatsApp — we confirm every booking for you.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-band">
+      <div class="container stats">
+        <div class="stat"><i class="fas fa-ring"></i><strong data-count="1250">0</strong><span data-i18n>Weddings planned</span></div>
+        <div class="stat"><i class="fas fa-store"></i><strong data-count="30">0</strong><span data-i18n>Trusted vendors</span></div>
+        <div class="stat"><i class="fas fa-star"></i><strong data-count="4.8" data-decimals="1">0</strong><span data-i18n>Average rating</span></div>
+        <div class="stat"><i class="fas fa-trophy"></i><strong data-count="15">0</strong><span data-i18n>Awards won</span></div>
+      </div>
+    </section>
+
+    <!-- Real weddings gallery -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n>Real weddings</p>
+          <h2 data-i18n>Moments by our photographers</h2>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n>Kind words</p>
+          <h2 data-i18n>What couples say</h2>
+        </div>
+        <div class="quotes" id="quotes"></div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n>Our team</p>
+          <h2 data-i18n>The people behind your day</h2>
+        </div>
+        <div class="team">
+          <div class="member reveal"><img src="images/team/noura.jpg" alt="" loading="lazy"><h3 data-i18n>Noura</h3><p class="muted" data-i18n>Wedding planner</p></div>
+          <div class="member reveal"><img src="images/team/farida.jpg" alt="" loading="lazy"><h3 data-i18n>Farida</h3><p class="muted" data-i18n>Vendor relations</p></div>
+          <div class="member reveal"><img src="images/team/jana.jpg" alt="" loading="lazy"><h3 data-i18n>Jana</h3><p class="muted" data-i18n>Bride support</p></div>
+          <div class="member reveal"><img src="images/team/adam.jpg" alt="" loading="lazy"><h3 data-i18n>Adam Ali</h3><p class="muted" data-i18n>Venue coordinator</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ + contact -->
+    <section class="section soft" id="faq">
+      <div class="container two-col">
+        <div class="reveal">
+          <p class="kicker" data-i18n>Questions</p>
+          <h2 data-i18n>Good to know</h2>
+          <div class="faq" id="faq-list"></div>
+        </div>
+        <div class="reveal">
+          <p class="kicker" data-i18n>Talk to us</p>
+          <h2 data-i18n>Send us a message</h2>
+          <form class="card contact-form" id="contact-form">
+            <label><span data-i18n>Your name</span><input class="input" id="c-name" required></label>
+            <label><span data-i18n>Wedding day</span><input class="input" type="date" id="c-date"></label>
+            <label><span data-i18n>Message</span><textarea class="input" id="c-msg" rows="4" required data-i18n-ph="Tell us about your wedding…"></textarea></label>
+            <button class="btn btn-whatsapp btn-block" type="submit"><i class="fab fa-whatsapp"></i> <span data-i18n>Send on WhatsApp</span></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/lang/ar.js"></script>
+  <script src="js/lang/fr.js"></script>
+  <script src="js/lang/it.js"></script>
+  <script src="js/lang/de.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

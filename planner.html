@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your wedding planner: countdown, budget, booked vendors and checklist.">
+  <title data-i18n="Planner — Forever Day">Planner — Forever Day</title>
+  <script>
+    try {
+      var theme = localStorage.getItem("fd-theme");
+      if (theme !== "light" && theme !== "dark") theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+      var lang = localStorage.getItem("fd-lang") || (navigator.language || "en").slice(0, 2);
+      if (/^(en|ar|fr|it|de)$/.test(lang)) document.documentElement.setAttribute("lang", lang);
+      if (lang === "ar") document.documentElement.setAttribute("dir", "rtl");
+    } catch (error) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="planner">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="page-hero" style="background-image:url(images/hero/lilac.jpg)">
+      <div class="container">
+        <p class="script" data-i18n>Your wedding planner</p>
+        <h1 id="planner-title"></h1>
+        <p data-i18n>Everything you've chosen, your budget and what's left to do.</p>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="container planner-grid">
+        <!-- Wedding details -->
+        <div class="card panel">
+          <h2><i class="fas fa-ring"></i> <span data-i18n>Our wedding</span></h2>
+          <form class="details-form" id="details-form">
+            <label><span data-i18n>Couple names</span><input class="input" id="p-names" data-i18n-ph="e.g. Sara & Karim"></label>
+            <label><span data-i18n>Wedding day</span><input class="input" type="date" id="p-date"></label>
+            <label><span data-i18n>Guests</span><input class="input" type="number" min="0" step="10" id="p-guests" inputmode="numeric"></label>
+            <label><span><span data-i18n>Budget</span> (<span data-currency></span>)</span><input class="input" type="number" min="0" step="1000" id="p-budget" inputmode="numeric"></label>
+          </form>
+          <div class="mini-timer" id="mini-timer"></div>
+        </div>
+
+        <!-- Budget -->
+        <div class="card panel" id="budget">
+          <h2><i class="fas fa-wallet"></i> <span data-i18n>Budget</span></h2>
+          <div class="budget-summary" id="budget-summary"></div>
+          <div class="cat-bars" id="cat-bars"></div>
+          <p class="muted small" data-i18n>The light bar shows a typical share of the budget for each part of the wedding.</p>
+        </div>
+
+        <!-- Booked vendors -->
+        <div class="card panel span-2">
+          <div class="panel-head">
+            <h2><i class="fas fa-clipboard-list"></i> <span data-i18n>My vendors</span></h2>
+            <div class="panel-actions">
+              <button class="btn btn-ghost btn-sm" type="button" id="print-plan"><i class="fas fa-print"></i> <span data-i18n>Print</span></button>
+              <button class="btn btn-whatsapp btn-sm" type="button" id="send-plan-2"><i class="fab fa-whatsapp"></i> <span data-i18n>Send to book</span></button>
+            </div>
+          </div>
+          <div class="vendor-slots" id="vendor-slots"></div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="card panel span-2" id="checklist">
+          <div class="panel-head">
+            <h2><i class="fas fa-tasks"></i> <span data-i18n>Checklist</span></h2>
+            <span class="muted" id="check-progress-text"></span>
+          </div>
+          <div class="budget-bar"><span id="check-progress"></span></div>
+          <ul class="checklist" id="check-list"></ul>
+          <form class="inline-form" id="add-task">
+            <input class="input" id="new-task" data-i18n-ph="Add your own task…" data-i18n-aria="New task" required>
+            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i> <span data-i18n>Add</span></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/lang/ar.js"></script>
+  <script src="js/lang/fr.js"></script>
+  <script src="js/lang/it.js"></script>
+  <script src="js/lang/de.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/planner.js"></script>
+</body>
+</html>
